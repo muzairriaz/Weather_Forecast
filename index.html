@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App 🌦️</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e90ff, #00bfff);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      width: 400px;
+    }
+    .btn-custom {
+      background-color: #0078ff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="card text-center">
+    <h2 class="mb-4">🌍 AccuWeather Forecast</h2>
+
+    <form method="POST">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="city" placeholder="Enter city name" required>
+        <button class="btn btn-custom" type="submit">Get Weather</button>
+      </div>
+    </form>
+
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    {% if weather_data %}
+      <h4 class="mt-3">{{ weather_data.location.city }}, {{ weather_data.location.country }}</h4>
+      <p><strong>Continent:</strong> {{ weather_data.location.continent }}</p>
+      <p><strong>Coordinates:</strong> {{ weather_data.location.latitude }}, {{ weather_data.location.longitude }}</p>
+      <hr>
+      <h5>🌤️ Today ({{ weather_data.today.date }})</h5>
+      <p>{{ weather_data.today.weather }}</p>
+      <p><strong>{{ weather_data.today.min }}°C - {{ weather_data.today.max }}°C</strong></p>
+      <hr>
+      <h5>🌦️ Tomorrow ({{ weather_data.tomorrow.date }})</h5>
+      <p>{{ weather_data.tomorrow.weather }}</p>
+      <p><strong>{{ weather_data.tomorrow.min }}°C - {{ weather_data.tomorrow.max }}°C</strong></p>
+    {% endif %}
+  </div>
+</body>
+</html>
