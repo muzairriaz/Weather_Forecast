@@ -1,8 +1,6 @@
+You can get API from https://developer.accuweather.com/home website
+
 create a templates folder and follow this structure
 
-your_project/
-│
-├── app.py
-│
-└── templates/
-    └── index.html
+app.py
+templates/index.html
